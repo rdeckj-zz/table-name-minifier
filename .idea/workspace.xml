@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5265c1e8-af4e-4282-beb4-27b211f3ed88" name="Default" comment="" />
+    <list default="true" id="5265c1e8-af4e-4282-beb4-27b211f3ed88" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/table_name_minifier/core.clj" afterPath="$PROJECT_DIR$/src/table_name_minifier/core.clj" />
+      <change beforePath="$PROJECT_DIR$/test/table_name_minifier/core_test.clj" afterPath="$PROJECT_DIR$/test/table_name_minifier/core_test.clj" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,14 +19,27 @@
       <file leaf-file-name="core.clj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/table_name_minifier/core.clj">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-272">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="core_test.clj" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/table_name_minifier/core_test.clj">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
-              <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+              <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -33,14 +50,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/table_name_minifier/core.clj" />
+        <option value="$PROJECT_DIR$/test/table_name_minifier/core_test.clj" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -56,9 +75,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -77,15 +95,29 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="table_name_minifier" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="table-name-minifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="table-name-minifier" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="table-name-minifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="table-name-minifier" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="table_name_minifier" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
+  <component name="ReplState" timestamp="1547429564460">{:repl-history {:ide [], :local [{:command &quot;(+ 1 2)&quot;, :offset 7, :ns &quot;user&quot;} {:command &quot;(let abc 0)&quot;, :offset 11, :ns &quot;user&quot;} {:command &quot;(let [abc] 0)&quot;, :offset 13, :ns &quot;user&quot;} {:command &quot;(let 0 abc)&quot;, :offset 11, :ns &quot;user&quot;} {:command &quot;(let [x 0])&quot;, :offset 11, :ns &quot;user&quot;} {:command &quot;x&quot;, :offset 1, :ns &quot;user&quot;} {:command &quot;(x)&quot;, :offset 3, :ns &quot;user&quot;} {:command &quot;(let [x 3] x)&quot;, :offset 13, :ns &quot;user&quot;} {:command &quot;(-find-command \&quot;potato\&quot;)&quot;, :offset 24, :ns &quot;user&quot;} {:command &quot;(main \&quot;help\&quot;)&quot;, :offset 13, :ns &quot;user&quot;} {:command &quot;(use table-name-minifier.core)&quot;, :offset 30, :ns &quot;user&quot;} {:command &quot;(find-command \&quot;hi\&quot;)&quot;, :offset 19, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(find-command nil)&quot;, :offset 18, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(find-command \&quot;\&quot;)&quot;, :offset 17, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(find-command \&quot;a\&quot;)&quot;, :offset 18, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(if (let [x 0] (= x 0)))&quot;, :offset 24, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(if (let [x 0] (= x 0))\n  (\&quot;potato\&quot;)\n  (\&quot;not potato\&quot;))&quot;, :offset 54, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(-main \&quot;help jadfjkgdf\&quot;)&quot;, :offset 24, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  command)&quot;, :offset 47, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  ((:function command) \&quot;\&quot;))&quot;, :offset 64, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  ((:function command)\n    ))&quot;, :offset 66, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  ((:function command)))&quot;, :offset 61, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  (:function command)).()&quot;, :offset 62, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(defn find-command\n  \&quot;Search command list for valid command flags\&quot;\n  [optional-args]\n  (if (empty? optional-args)\n    ()\n    ((first (filter #(= optional-args (:name %)) commands))))\n  )&quot;, :offset 186, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  (:function command))&quot;, :offset 59, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(command-help \&quot;\&quot;)&quot;, :offset 17, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(find-command)&quot;, :offset 14, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(command-help)&quot;, :offset 14, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(find-command2 \&quot;help\&quot;)&quot;, :offset 22, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(find-command \&quot;help\&quot;)&quot;, :offset 21, :ns &quot;table-name-minifier.core&quot;} {:command &quot;((find-command \&quot;help\&quot;))&quot;, :offset 23, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  (if (command)\n    (\&quot;potato\&quot;)\n    (\&quot;no\&quot;)))&quot;, :offset 80, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  (if (empty? command)\n    (\&quot;potato\&quot;)\n    (\&quot;no\&quot;)))&quot;, :offset 87, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  (command))&quot;, :offset 49, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  (if (command)\n    (println \&quot;command\&quot;)\n    (println \&quot;fuck\&quot;)))&quot;, :offset 99, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  (if command\n    (println \&quot;command\&quot;)\n    (println \&quot;fuck\&quot;)))&quot;, :offset 97, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  (if command\n    (println \&quot;yes\&quot;)\n    (println \&quot;fuck\&quot;)))&quot;, :offset 93, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [command (find-command \&quot;help\&quot;)]\n  (if command\n    (command)\n    (println \&quot;fuck\&quot;)))&quot;, :offset 87, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(-main \&quot;testing_some_input\&quot;)&quot;, :offset 28, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(in-ns table-name-minifier.core)&quot;, :offset 32, :ns &quot;user&quot;} {:command &quot;(use 'table-name-minifier.core')&quot;, :offset 32, :ns &quot;user&quot;} {:command &quot;(minify-input \&quot;afdgasdf\&quot;)&quot;, :offset 25, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(handle-commands \&quot;afdgasdf\&quot;)&quot;, :offset 28, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(handle-commands \&quot;--help\&quot;)&quot;, :offset 26, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(-main \&quot;testing\&quot;)&quot;, :offset 17, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(in-ns 'table-name-minifier.core)&quot;, :offset 33, :ns &quot;user&quot;} {:command &quot;(-main \&quot;--help\&quot;)&quot;, :offset 16, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(-main \&quot;help\&quot;)&quot;, :offset 14, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [result \&quot;potato\&quot;])&quot;, :offset 23, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [result \&quot;potato\&quot;]\n  (if-not (empty? result)\n    (result)\n    (\&quot;asdf\&quot;)))&quot;, :offset 76, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [result \&quot;potato\&quot;]\n  (if-not (empty? result)\n    ((str result))\n    (\&quot;asdf\&quot;)))&quot;, :offset 82, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [result \&quot;potato\&quot;]\n  (if-not (empty? result)\n    ((str \&quot;yea\&quot;))\n    ((str \&quot;asdf\&quot;))))&quot;, :offset 87, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [result \&quot;potato\&quot;]\n  (if-not (empty? result)\n    (println \&quot;yes\&quot;)\n    (println \&quot;\&quot;)&quot;, :offset 85, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [result \&quot;potato\&quot;]\n  (if-not (empty? result)\n    (println \&quot;yes\&quot;)\n    (println \&quot;no\&quot;)))&quot;, :offset 89, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [result \&quot;potato\&quot;]\n  (if-not (empty? result)\n    (println result)\n    (println \&quot;no\&quot;)))&quot;, :offset 90, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(let [result \&quot;potato\&quot;]\n  (if-not (empty? result)\n    (str result)\n    (println \&quot;no\&quot;)))&quot;, :offset 86, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(-main \&quot;percent\&quot;)&quot;, :offset 17, :ns &quot;table-name-minifier.core&quot;} {:command &quot;(-main \&quot;percent_asdf\&quot;)&quot;, :offset 22, :ns &quot;table-name-minifier.core&quot;}], :remote []}}</component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -98,7 +130,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Clojure Application.table-name-minifier.core">
+  <component name="RunManager" selected="Clojure Application.core_test (3)">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -120,14 +152,52 @@
       <module name="" />
       <envs />
     </configuration>
-    <configuration name="core" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+    <configuration name="REPL" type="ClojureREPL" factoryName="Local">
+      <setting name="replType" value="1" />
       <module name="table-name-minifier" />
-      <setting name="path" value="$PROJECT_DIR$/src/table_name_minifier/core.clj" />
+      <setting name="jvmArgs" value="" />
+      <setting name="parameters" value="" />
+      <setting name="workingDir" value="$PROJECT_DIR$" />
+      <setting name="profiles" value="" />
+    </configuration>
+    <configuration name="core_test (1)" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+      <module name="table-name-minifier" />
+      <setting name="path" value="$PROJECT_DIR$/test/table_name_minifier/core_test.clj" />
       <setting name="namespace" value="" />
       <setting name="useLein" value="false" />
       <setting name="profiles" value="" />
       <setting name="vmparams" value="" />
-      <setting name="params" value="-blah" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$/test/table_name_minifier" />
+    </configuration>
+    <configuration name="core_test (2)" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+      <module name="table-name-minifier" />
+      <setting name="path" value="$PROJECT_DIR$/test/table_name_minifier/core_test.clj" />
+      <setting name="namespace" value="" />
+      <setting name="useLein" value="false" />
+      <setting name="profiles" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$/test/table_name_minifier" />
+    </configuration>
+    <configuration name="core_test (3)" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+      <module name="table-name-minifier" />
+      <setting name="path" value="$PROJECT_DIR$/test/table_name_minifier/core_test.clj" />
+      <setting name="namespace" value="" />
+      <setting name="useLein" value="false" />
+      <setting name="profiles" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$/test/table_name_minifier" />
+    </configuration>
+    <configuration name="core_test" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+      <module name="table-name-minifier" />
+      <setting name="path" value="" />
+      <setting name="namespace" value="table-name-minifier.core" />
+      <setting name="useLein" value="true" />
+      <setting name="profiles" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
       <setting name="workDir" value="$PROJECT_DIR$" />
     </configuration>
     <configuration name="table-name-minifier.core" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
@@ -137,7 +207,7 @@
       <setting name="useLein" value="true" />
       <setting name="profiles" value="" />
       <setting name="vmparams" value="" />
-      <setting name="params" value="some-table-name" />
+      <setting name="params" value="help" />
       <setting name="workDir" value="$PROJECT_DIR$" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -176,14 +246,21 @@
     <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Clojure Application.core" />
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Clojure REPL.REPL" />
       <item index="1" class="java.lang.String" itemvalue="Clojure Application.table-name-minifier.core" />
+      <item index="2" class="java.lang.String" itemvalue="Clojure Application.core_test" />
+      <item index="3" class="java.lang.String" itemvalue="Clojure Application.core_test (1)" />
+      <item index="4" class="java.lang.String" itemvalue="Clojure Application.core_test (2)" />
+      <item index="5" class="java.lang.String" itemvalue="Clojure Application.core_test (3)" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Clojure Application.table-name-minifier.core" />
-        <item index="1" class="java.lang.String" itemvalue="Clojure Application.core" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Clojure Application.core_test (3)" />
+        <item index="1" class="java.lang.String" itemvalue="Clojure Application.core_test (2)" />
+        <item index="2" class="java.lang.String" itemvalue="Clojure Application.core_test (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Clojure Application.table-name-minifier.core" />
+        <item index="4" class="java.lang.String" itemvalue="Clojure Application.core_test" />
       </list>
     </recent_temporary>
   </component>
@@ -201,20 +278,21 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1936" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="REPL" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="REPL" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35287845" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Leiningen" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2553305" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25799572" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -232,7 +310,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -254,8 +334,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/table_name_minifier/core.clj">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/table_name_minifier/core_test.clj">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/table_name_minifier/core.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-272">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
