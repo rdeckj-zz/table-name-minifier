@@ -5,6 +5,7 @@
   "Display the help screen"
   []
   (println "Usage: tnmin [--help] <command> [<args>]")
+  (System/exit 0)
   )
 
 (def commands [{:name "--help" :function command-help}])
@@ -17,15 +18,6 @@
   [optional-args]
   (when-not (empty? optional-args)
     (:function (first (filter #(= optional-args (:name %)) commands)))))
-
-(defn command-not-found
-  "Print command not found error to user"
-  [unknown-command]
-  (print "tnmin: '")
-  (print unknown-command)
-  (print "' is not a tnmin command. See 'tnmin --help'.\n")
-  (flush)
-  )
 
 (defn remove-vowels
   "Remove vowels from the string"
@@ -41,26 +33,67 @@
       (str word))))
 
 (defn minify-input
-  "Condense the input string"
-  [long-name]
-  (remove-vowels (process-special-words long-name)))
+  "Condense the input collection"
+  [input]
+  (loop [initial (first input)
+         remaining (rest input)
+         result (str "")]
+
+    (if-not (empty? remaining)
+      (recur
+        (first remaining)
+        (rest remaining)
+        (concat result
+
+              (if (= initial (process-special-words initial))
+                (remove-vowels initial)
+                (process-special-words initial))
+
+              ))
+
+      )
+    )
+  )
+
+(defn append-command
+  ""
+  [bool not-commands current]
+  (if-not bool
+    (conj not-commands current)
+    not-commands)
+  )
 
 (defn handle-commands
   "Handle special commands"
-  [possible-command]
-  (let [command-fn (get-command-fn possible-command)]
-    (if command-fn
-      (command-fn)
-      ())))
+  [input]
+  (loop [initial (first input)
+         remaining (rest input)
+         not-command `()]
+
+    (let [command-fn (get-command-fn initial)]
+      (if command-fn
+        (command-fn))
+
+      (if-not (empty? remaining)
+        (recur
+          (first remaining)
+          (rest remaining)
+          (append-command command-fn not-command initial))
+        (append-command command-fn not-command initial)
+        )
+
+      )
+    )
+  )
 
 (defn -main
   "Take user input and process"
   [& args]
-  (let [[first-arg & remaining-args] args]
-    (if (handle-commands first-arg)
-      (do
-        (let [result (minify-input first-arg)]
-          (println result)
-          result))
-      ())
-    ))
+  (let [input-col (str/split args #"[_ ]")]
+    (if (handle-commands input-col)
+    (do
+      (let [result (minify-input input-col)]
+        (println result)
+        result)
+      ))
+  ))
