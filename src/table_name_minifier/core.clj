@@ -6,9 +6,17 @@
   []
   (println "Usage: tnmin [--help] <command> [<args>]")
   (System/exit 0)
-  )
+)
 
-(def commands [{:name "--help" :function command-help}])
+(defn command-verbose
+  "Enable verbose mode"
+  []
+  ;TODO
+)
+
+(def commands [{:name "--help" :function command-help}
+               {:name "--verbose" :function command-verbose}])
+
 (def abbreviations [{:word "percent" :abbreviation "pct"}
                     {:word "street" :abbreviation "st"}
                     {:word "avenue" :abbreviation "ave"}])
@@ -39,21 +47,32 @@
          remaining (rest input)
          result (str "")]
 
+
+    ;(if (= initial (process-special-words initial))
+    ;  (remove-vowels initial)
+    ;  (process-special-words initial)
+    ;))
+
+
     (if-not (empty? remaining)
       (recur
         (first remaining)
         (rest remaining)
         (concat result
-
               (if (= initial (process-special-words initial))
                 (remove-vowels initial)
-                (process-special-words initial))
-
-              ))
-
+                (process-special-words initial)
+              )
+        )
       )
+      (if (= initial (process-special-words initial))
+         (remove-vowels initial)
+         (process-special-words initial)
+         )
     )
+
   )
+)
 
 (defn append-command
   ""
@@ -79,9 +98,8 @@
           (first remaining)
           (rest remaining)
           (append-command command-fn not-command initial))
-        (append-command command-fn not-command initial)
+        (reverse (append-command command-fn not-command initial))
         )
-
       )
     )
   )
