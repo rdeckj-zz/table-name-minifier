@@ -15,7 +15,7 @@
   (testing "percent returns pct"
     (is (= (process-special-words "percent") "pct")))
 
-  (testing "street returns st"
+  (testing "state returns st"
     (is (= (process-special-words "state") "st")))
 
   (testing "pound returns lb"
@@ -31,4 +31,13 @@
 
   (testing "multiple word normal input minified by removing vowels"
     (is (= (minify-input ["testing", "normal"]) ["tstng", "nrml"])))
+
+  (testing "single word special input minified using special abbreviation"
+    (is (= (minify-input ["pound"]) ["lb"])))
+
+  (testing "multiple word special input minified by using special abbreviation"
+    (is (= (minify-input ["pound", "state"]) ["lb", "st"])))
+
+  (testing "mixed input minified depending on type of word"
+    (is (= (minify-input ["pound", "potato"]) ["lb", "ptt"])))
   )
