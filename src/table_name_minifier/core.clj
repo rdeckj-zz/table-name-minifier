@@ -18,8 +18,8 @@
                {:name "--verbose" :function command-verbose}])
 
 (def abbreviations [{:word "percent" :abbreviation "pct"}
-                    {:word "street" :abbreviation "st"}
-                    {:word "avenue" :abbreviation "ave"}])
+                    {:word "state" :abbreviation "st"}
+                    {:word "pound" :abbreviation "lb"}])
 
 (defn get-command-fn
   "Search command list for valid command flags"
@@ -41,36 +41,24 @@
       (str word))))
 
 (defn minify-input
-  "Condense the input collection"
+  "Condense the input collection into a reduced collection"
   [input]
-  (loop [initial (first input)
+  (loop [current (first input)
          remaining (rest input)
-         result (str "")]
+         result []]
 
-
-    ;(if (= initial (process-special-words initial))
-    ;  (remove-vowels initial)
-    ;  (process-special-words initial)
-    ;))
-
-
-    (if-not (empty? remaining)
+    (if-not (empty? current)
       (recur
         (first remaining)
         (rest remaining)
-        (concat result
-              (if (= initial (process-special-words initial))
-                (remove-vowels initial)
-                (process-special-words initial)
+        (conj result
+              (if (= current (process-special-words current))
+                (remove-vowels current)
+                (process-special-words current)
               )
         )
       )
-      (if (= initial (process-special-words initial))
-         (remove-vowels initial)
-         (process-special-words initial)
-         )
-    )
-
+      result)
   )
 )
 
