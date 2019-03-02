@@ -1,5 +1,6 @@
 (ns table-name-minifier.core
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str])
+  (:gen-class :main true))
 
 (defn command-help
   "Display the help screen"
@@ -92,10 +93,10 @@
     )
   )
 
-(defn strip-seperators
-  "Remove word seperators"
+(defn strip-separators
+  "Remove word separators"
   [input]
-  (str/split input #"[_-]")
+  (str/split input #"[_]")
   )
 
 (defn reform-table-name
@@ -107,11 +108,5 @@
 (defn -main
   "Take user input and process"
   [input]
-  (let [input-col (strip-seperators input)]
-    (let [no-commands (handle-commands input-col)]
-      (let [minified (minify-input no-commands)]
-        (reform-table-name minified)
-        )
-      )
-    )
+  (println (reform-table-name (minify-input (handle-commands (strip-separators input)))))
   )

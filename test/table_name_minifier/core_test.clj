@@ -44,26 +44,12 @@
 
 (deftest strip-seperators-tests
   (testing "single word returns single item"
-    (is (= (strip-seperators "one") ["one"])))
+    (is (= (strip-separators "one") ["one"])))
 
   (testing "underscore seperator"
-    (is (= (strip-seperators "one_two") ["one", "two"])))
-
-  (testing "dash seperator"
-    (is (= (strip-seperators "one-two") ["one", "two"])))
+    (is (= (strip-separators "one_two") ["one", "two"])))
   )
 
 (deftest reform-table-name-tests
   (testing "reforms single word"
     (is (= (reform-table-name ["potato"]) "potato"))))
-
-(deftest main-tests
-  (testing "single word"
-    (is (= (-main "testing") "tstng")))
-
-  (testing "underscore seperator"
-    (is (= (-main "testing_one_two") "tstng_n_tw")))
-
-  (testing "dash seperator"
-    (is (= (-main "this-that") "ths_tht")))
-  )
