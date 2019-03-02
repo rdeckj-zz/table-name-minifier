@@ -92,13 +92,25 @@
     )
   )
 
+(defn strip-seperators
+  "Remove word seperators"
+  [input]
+  (str/split input #"[_-]")
+  )
+
+(defn reform-table-name
+  "Reform table name"
+  [input]
+  (clojure.string/join "_" input)
+  )
+
 (defn -main
   "Take user input and process"
   [input]
-  (let [input-col (str/split input #"[_]")]
+  (let [input-col (strip-seperators input)]
     (let [no-commands (handle-commands input-col)]
       (let [minified (minify-input no-commands)]
-        (apply str minified)
+        (reform-table-name minified)
         )
       )
     )
