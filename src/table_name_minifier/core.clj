@@ -94,12 +94,12 @@
 
 (defn -main
   "Take user input and process"
-  [& args]
-  (let [input-col (str/split args #"[_ ]")]
-    (if (handle-commands input-col)
-    (do
-      (let [result (minify-input input-col)]
-        (println result)
-        result)
-      ))
-  ))
+  [input]
+  (let [input-col (str/split input #"[_]")]
+    (let [no-commands (handle-commands input-col)]
+      (let [minified (minify-input no-commands)]
+        (apply str minified)
+        )
+      )
+    )
+  )

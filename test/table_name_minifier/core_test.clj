@@ -41,3 +41,8 @@
   (testing "mixed input minified depending on type of word"
     (is (= (minify-input ["pound", "potato"]) ["lb", "ptt"])))
   )
+
+(deftest main-tests
+  (testing "single word"
+    (is (= (-main "testing") "tstng")))
+  )
