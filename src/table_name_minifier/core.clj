@@ -22,6 +22,8 @@
                     {:word "state" :abbreviation "st"}
                     {:word "pound" :abbreviation "lb"}])
 
+(def default-max-length 32)
+
 (defn get-command-fn
   "Search command list for valid command flags"
   [optional-args]
@@ -41,8 +43,27 @@
       (str result)
       (str word))))
 
-(defn minify-input
-  "Condense the input collection into a reduced collection"
+(defn minify-special-words
+  [input]
+  (loop [current (first input)
+         remaining (rest input)
+         result []]
+
+    (if-not (empty? current)
+      (recur
+        (first remaining)
+        (rest remaining)
+        (conj result
+              (if (= current (process-special-words current))
+                current
+                (process-special-words current))
+              )
+        )
+      result)
+    )
+  )
+
+(defn minify-normal-words
   [input]
   (loop [current (first input)
          remaining (rest input)
@@ -55,13 +76,14 @@
         (conj result
               (if (= current (process-special-words current))
                 (remove-vowels current)
-                (process-special-words current)
+                current
+                )
               )
         )
-      )
       result)
+    )
   )
-)
+
 
 (defn append-command
   ""
@@ -105,8 +127,17 @@
   (clojure.string/join "_" input)
   )
 
+(defn minify-input
+  "Condense the input collection into a reduced collection"
+  [input max-length]
+  (let [first-pass (minify-special-words input)]
+    (if (> (count (reform-table-name first-pass)) max-length)
+      (minify-normal-words first-pass)
+      first-pass))
+  )
+
 (defn -main
   "Take user input and process"
   [input]
-  (println (reform-table-name (minify-input (handle-commands (strip-separators input)))))
+  (println (reform-table-name (minify-input (handle-commands (strip-separators input)) default-max-length)))
   )

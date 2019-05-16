@@ -25,21 +25,51 @@
     (is (= (process-special-words "potato") "potato")))
   )
 
-(deftest minify-input-tests
+(deftest minify-special-words-tests
+  (testing "single word"
+           (is (= (minify-special-words ["pound"]) ["lb"])))
+
+  (testing "multiple words"
+           (is (= (minify-special-words ["pound", "state", "percent"]) ["lb", "st", "pct"])))
+
+  (testing "returns normal words"
+           (is (= (minify-special-words ["normal"]) ["normal"])))
+  )
+
+(deftest minify-normal-words-tests
+  (testing "single word"
+           (is (= (minify-normal-words ["this"]) ["ths"])))
+
+  (testing "multiple words"
+           (is (= (minify-normal-words ["this", "that", "other"]) ["ths", "tht", "thr"])))
+
+  (testing "returns special words"
+           (is (= (minify-special-words ["pound"]) ["lb"])))
+  )
+
+(deftest minify-input-tests-over-length-limit
   (testing "single word normal input minified by removing vowels"
-    (is (= (minify-input ["testing"]) ["tstng"])))
+           (is (= (minify-input ["testing"], 5) ["tstng"])))
 
   (testing "multiple word normal input minified by removing vowels"
-    (is (= (minify-input ["testing", "normal"]) ["tstng", "nrml"])))
+    (is (= (minify-input ["testing", "normal"], 8) ["tstng", "nrml"])))
 
   (testing "single word special input minified using special abbreviation"
-    (is (= (minify-input ["pound"]) ["lb"])))
+    (is (= (minify-input ["pound"], 7) ["lb"])))
 
   (testing "multiple word special input minified by using special abbreviation"
-    (is (= (minify-input ["pound", "state"]) ["lb", "st"])))
+    (is (= (minify-input ["pound", "state"], 5) ["lb", "st"])))
 
-  (testing "mixed input minified depending on type of word"
-    (is (= (minify-input ["pound", "potato"]) ["lb", "ptt"])))
+  (testing "mixed input minifies both"
+           (is (= (minify-input ["normal", "pound"], 4) ["nrml", "lb"])))
+  )
+
+(deftest minify-input-tests-under-length-limit
+  (testing "mixed input minifies special word"
+           (is (= (minify-input ["pound", "potato"], 32) ["lb", "potato"])))
+
+  (testing "normal words not minified"
+           (is (= (minify-input ["this", "that"], 32) ["this", "that"])))
   )
 
 (deftest strip-seperators-tests
@@ -52,4 +82,8 @@
 
 (deftest reform-table-name-tests
   (testing "reforms single word"
-    (is (= (reform-table-name ["potato"]) "potato"))))
+    (is (= (reform-table-name ["potato"]) "potato")))
+
+  (testing "reforms multiple words"
+           (is (= (reform-table-name ["one", "two", "three"]), "one_two_three")))
+  )
