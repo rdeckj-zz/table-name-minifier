@@ -10,20 +10,19 @@
   (testing "collection with commands present returns collection without commands"
     (is (= (handle-commands ["some", "--verbose", "name"]) ["some", "name"]))))
 
-(deftest process-special-words-tests
+(deftest minify-special-words-tests
   (testing "percent returns pct"
-    (is (= (process-special-words "percent") "pct")))
+    (is (= (minify-special-words ["percent"]) ["pct"])))
 
   (testing "state returns st"
-    (is (= (process-special-words "state") "st")))
+    (is (= (minify-special-words ["state"]) ["st"])))
 
   (testing "pound returns lb"
-    (is (= (process-special-words "pound") "lb")))
+    (is (= (minify-special-words ["pound"]) ["lb"])))
 
   (testing "not special word returns input"
-    (is (= (process-special-words "potato") "potato"))))
+    (is (= (minify-special-words ["potato"]) ["potato"])))
 
-(deftest minify-special-words-tests
   (testing "single word"
     (is (= (minify-special-words ["pound"]) ["lb"])))
 
@@ -33,17 +32,13 @@
   (testing "returns normal words"
     (is (= (minify-special-words ["normal"]) ["normal"]))))
 
-(deftest minify-normal-words-tests
+(deftest minify-input-tests-over-length-limit
   (testing "single word"
-    (is (= (minify-normal-words ["this"]) ["ths"])))
+    (is (= (minify-input ["this"] 3) ["ths"])))
 
   (testing "multiple words"
-    (is (= (minify-normal-words ["this", "that", "other"]) ["ths", "tht", "thr"])))
+    (is (= (minify-input ["this", "that", "other"] 10) ["ths", "tht", "thr"])))
 
-  (testing "returns special words"
-    (is (= (minify-special-words ["pound"]) ["lb"]))))
-
-(deftest minify-input-tests-over-length-limit
   (testing "single word normal input minified by removing vowels"
     (is (= (minify-input ["testing"], 5) ["tstng"])))
 
@@ -60,6 +55,9 @@
     (is (= (minify-input ["normal", "pound"], 4) ["nrml", "lb"]))))
 
 (deftest minify-input-tests-under-length-limit
+  (testing "returns special words"
+    (is (= (minify-input ["pound"] 32) ["lb"])))
+
   (testing "mixed input minifies special word"
     (is (= (minify-input ["pound", "potato"], 32) ["lb", "potato"])))
 

@@ -35,15 +35,6 @@
   [input]
   (str/replace input #"[aeiou]" ""))
 
-;; TODO remove this because minify-special-words now has all this logic
-(defn process-special-words
-  "DEPRECATED"
-  [word]
-  (let [result (:abbreviation (first (filter #(= word (:word %)) abbreviations)))]
-    (if-not (empty? result)
-      (str result)
-      (str word))))
-
 (defn minify-special-words
   [input]
   (->> input
@@ -55,25 +46,6 @@
                              (:abbreviation abbreviation-map))))
                    ;; if there wasn't one then % will be null and it will use the original word instead
                    (#(if (some? %) % word)))))))
-
-;; TODO remove because this was logic is done in minify-input
-(defn minify-normal-words
-  "DEPRECATED"
-  [input]
-  (loop [current (first input)
-         remaining (rest input)
-         result []]
-
-    (if-not (empty? current)
-      (recur
-       (first remaining)
-       (rest remaining)
-       (conj result
-             (if (= current (process-special-words current))
-               (remove-vowels current)
-               current)))
-
-      result)))
 
 (defn append-command
   ""
@@ -124,7 +96,7 @@
                    ;; account for not removing any vowels for already abbreviated words
                    ;; TODO might want to add some sort of test for this case (there isn't an abbreviation with a vowel right now)
                    (let [abbrevs (->> abbreviations (map :abbreviation))]
-                     (if (->> abbrevs (some #(= word %)))
+                     (if (some? (->> abbrevs (some #(= word %))))
                        word
                        (remove-vowels word))))))
        ;; Otherwise it is good and pass it along
