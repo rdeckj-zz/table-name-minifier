@@ -56,7 +56,9 @@
                    ;; if there wasn't one then % will be null and it will use the original word instead
                    (#(if (some? %) % word)))))))
 
+;; TODO remove because this was logic is done in minify-input
 (defn minify-normal-words
+  "DEPRECATED"
   [input]
   (loop [current (first input)
          remaining (rest input)
@@ -116,7 +118,7 @@
    (let [first-pass (minify-special-words input)
          first-pass-count (->> first-pass reform-table-name count)]
      (if (> first-pass-count max-length)
-       (minify-normal-words first-pass)
+       (->> first-pass (map remove-vowels)) ;; this works as long as abbreviations has no vowels (which it doesn't atm)
        first-pass))))
 
 (defn -main
