@@ -35,8 +35,9 @@
   [input]
   (str/replace input #"[aeiou]" ""))
 
+;; TODO remove this because minify-special-words now has all this logic
 (defn process-special-words
-  ""
+  "DEPRECATED"
   [word]
   (let [result (:abbreviation (first (filter #(= word (:word %)) abbreviations)))]
     (if-not (empty? result)
@@ -45,20 +46,15 @@
 
 (defn minify-special-words
   [input]
-  (loop [current (first input)
-         remaining (rest input)
-         result []]
-
-    (if-not (empty? current)
-      (recur
-       (first remaining)
-       (rest remaining)
-       (conj result
-             (if (= current (process-special-words current))
-               current
-               (process-special-words current))))
-
-      result)))
+  (->> input
+       (map (fn [word]
+              (->> abbreviations
+                   ;; find and pass along an abbreviation if it exists
+                   (some (fn [abbreviation-map]
+                           (if (= (:word abbreviation-map) word)
+                             (:abbreviation abbreviation-map))))
+                   ;; if there wasn't one then % will be null and it will use the original word instead
+                   (#(if (some? %) % word)))))))
 
 (defn minify-normal-words
   [input]
