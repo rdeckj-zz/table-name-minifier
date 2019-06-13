@@ -4,9 +4,9 @@ A Clojure library designed to shorten SQL table names.
 
 ## Installation
 
-1. Download the `tnmin` bash script
-2. Place it somewhere in your `$PATH`
-3. Set it to be executable `chmod a+x tnmin`
+1. Download the `tnmin` bash script and `tmin.jar`
+2. Place them in the same directory somewhere in your `$PATH`
+3. Set `tnmin` to be executable `chmod a+x tnmin`
 4. Run it
 
 ## Usage
