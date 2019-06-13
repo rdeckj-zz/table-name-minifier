@@ -114,13 +114,21 @@
 
 (defn minify-input
   "Condense the input collection into a reduced collection"
-  [input max-length]
-  (let [first-pass (minify-special-words input)]
-    (if (> (count (reform-table-name first-pass)) max-length)
-      (minify-normal-words first-pass)
-      first-pass)))
+  ([input]
+   (minify-input input default-max-length)) ;; TODO this is multi arity example
+  ([input max-length]
+   (let [first-pass (minify-special-words input)]
+     (if (> (count (reform-table-name first-pass)) max-length)
+       (minify-normal-words first-pass)
+       first-pass))))
 
 (defn -main
   "Take user input and process"
   [input]
-  (println (reform-table-name (minify-input (handle-commands (strip-separators input)) default-max-length))))
+  (println
+   (->> input
+        strip-separators
+        handle-commands
+        minify-input ;; TODO added multi arity to keep this thread clean and backwards compatible (for tests)
+                     ;; Otherwise it would be (#(minify-input % default-max-length))
+        reform-table-name)))
