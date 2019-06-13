@@ -118,7 +118,16 @@
    (let [first-pass (minify-special-words input)
          first-pass-count (->> first-pass reform-table-name count)]
      (if (> first-pass-count max-length)
-       (->> first-pass (map remove-vowels)) ;; this works as long as abbreviations has no vowels (which it doesn't atm)
+       ;; If it is too long lets remove some vowels
+       (->> first-pass
+            (map (fn [word]
+                   ;; account for not removing any vowels for already abbreviated words
+                   ;; TODO might want to add some sort of test for this case (there isn't an abbreviation with a vowel right now)
+                   (let [abbrevs (->> abbreviations (map :abbreviation))]
+                     (if (->> abbrevs (some #(= word %)))
+                       word
+                       (remove-vowels word))))))
+       ;; Otherwise it is good and pass it along
        first-pass))))
 
 (defn -main
