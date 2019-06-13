@@ -8,8 +8,7 @@
       (is (= (handle-commands input) input))))
 
   (testing "collection with commands present returns collection without commands"
-    (is (= (handle-commands ["some", "--verbose", "name"]) ["some", "name"])))
-  )
+    (is (= (handle-commands ["some", "--verbose", "name"]) ["some", "name"]))))
 
 (deftest process-special-words-tests
   (testing "percent returns pct"
@@ -22,8 +21,7 @@
     (is (= (process-special-words "pound") "lb")))
 
   (testing "not special word returns input"
-    (is (= (process-special-words "potato") "potato")))
-  )
+    (is (= (process-special-words "potato") "potato"))))
 
 (deftest minify-special-words-tests
   (testing "single word"
@@ -33,8 +31,7 @@
            (is (= (minify-special-words ["pound", "state", "percent"]) ["lb", "st", "pct"])))
 
   (testing "returns normal words"
-           (is (= (minify-special-words ["normal"]) ["normal"])))
-  )
+           (is (= (minify-special-words ["normal"]) ["normal"]))))
 
 (deftest minify-normal-words-tests
   (testing "single word"
@@ -44,8 +41,7 @@
            (is (= (minify-normal-words ["this", "that", "other"]) ["ths", "tht", "thr"])))
 
   (testing "returns special words"
-           (is (= (minify-special-words ["pound"]) ["lb"])))
-  )
+           (is (= (minify-special-words ["pound"]) ["lb"]))))
 
 (deftest minify-input-tests-over-length-limit
   (testing "single word normal input minified by removing vowels"
@@ -61,29 +57,25 @@
     (is (= (minify-input ["pound", "state"], 5) ["lb", "st"])))
 
   (testing "mixed input minifies both"
-           (is (= (minify-input ["normal", "pound"], 4) ["nrml", "lb"])))
-  )
+           (is (= (minify-input ["normal", "pound"], 4) ["nrml", "lb"]))))
 
 (deftest minify-input-tests-under-length-limit
   (testing "mixed input minifies special word"
            (is (= (minify-input ["pound", "potato"], 32) ["lb", "potato"])))
 
   (testing "normal words not minified"
-           (is (= (minify-input ["this", "that"], 32) ["this", "that"])))
-  )
+           (is (= (minify-input ["this", "that"], 32) ["this", "that"]))))
 
 (deftest strip-seperators-tests
   (testing "single word returns single item"
     (is (= (strip-separators "one") ["one"])))
 
   (testing "underscore seperator"
-    (is (= (strip-separators "one_two") ["one", "two"])))
-  )
+    (is (= (strip-separators "one_two") ["one", "two"]))))
 
 (deftest reform-table-name-tests
   (testing "reforms single word"
     (is (= (reform-table-name ["potato"]) "potato")))
 
   (testing "reforms multiple words"
-           (is (= (reform-table-name ["one", "two", "three"]), "one_two_three")))
-  )
+           (is (= (reform-table-name ["one", "two", "three"]), "one_two_three"))))
