@@ -1,15 +1,27 @@
 # table-name-minifier
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure library designed to shorten SQL table names.
+
+## Installation
+
+1. Download the `tnmin` bash script
+2. Place it somewhere in your `$PATH`
+3. Set it to be executable `chmod a+x tnmin`
+4. Run it
 
 ## Usage
+A quick TLDR:
 
-FIXME
+```
+$ tnmin long_table_name_that_should_become_minified        # lng_tbl_nm_tht_shld_bcm_mnfd
+$ tnmin short_table_name                                   # short_table_name
+$ tnmin pound_is_special                                   # lb_is_special
+$ tnmin pound_remains_special_in_long_names                # lb_rmns_spcl_n_lng_nms
+```
+
 
 ## License
 
-Copyright © 2019 FIXME
+Copyright © 2019 Joshua Radecki
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
-# table-name-minifier
+Distributed under the Eclipse Public License.
