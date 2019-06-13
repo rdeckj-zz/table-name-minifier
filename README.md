@@ -6,8 +6,7 @@ A Clojure library designed to shorten SQL table names.
 
 1. Download the `tnmin` bash script and `tmin.jar`
 2. Place them in the same directory somewhere in your `$PATH`
-3. Set `tnmin` to be executable `chmod a+x tnmin`
-4. Run it
+3. Run it
 
 ## Usage
 A quick TLDR:
