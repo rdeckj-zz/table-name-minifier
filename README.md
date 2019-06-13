@@ -4,7 +4,8 @@ A Clojure library designed to shorten SQL table names.
 
 ## Installation
 
-1. Download the `tnmin` bash script and `tmin.jar`
+1. Download the [latest release](https://github.com/rdeckj/table-name-minifier/releases)
+2. Unzip the release folder, it contains the `tnmin` bash script and `tmin.jar`
 2. Place them in the same directory somewhere in your `$PATH`
 3. Run it
 
