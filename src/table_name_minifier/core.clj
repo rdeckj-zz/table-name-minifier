@@ -117,8 +117,9 @@
   ([input]
    (minify-input input default-max-length)) ;; TODO this is multi arity example
   ([input max-length]
-   (let [first-pass (minify-special-words input)]
-     (if (> (count (reform-table-name first-pass)) max-length)
+   (let [first-pass (minify-special-words input)
+         first-pass-count (->> first-pass reform-table-name count)]
+     (if (> first-pass-count max-length)
        (minify-normal-words first-pass)
        first-pass))))
 
