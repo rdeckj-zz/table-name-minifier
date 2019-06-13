@@ -103,7 +103,7 @@
         (reverse (append-command command-fn not-command initial))))))
 
 (defn strip-separators
-  "Remove word separators"
+  "Remove word separators, turns string into a vector"
   [input]
   (str/split input #"[_]"))
 
