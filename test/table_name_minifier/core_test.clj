@@ -78,4 +78,9 @@
     (is (= (reform-table-name ["potato"]) "potato")))
 
   (testing "reforms multiple words"
-    (is (= (reform-table-name ["one", "two", "three"]), "one_two_three"))))
+    (is (= (reform-table-name ["one", "two", "three"]), "one_two_three")))) ;; don't need ","
+
+(deftest -main-tests
+  (testing "main prints correct value"
+    (is (= (with-out-str (-main "really_long_table_name_over_32_characters_and_it_sucks "))
+           "rlly_lng_tbl_nm_vr_32_chrctrs_nd_t_scks \n"))))

@@ -6,7 +6,8 @@
   "Display the help screen"
   []
   (println "Usage: tnmin [--help] <command> [<args>]")
-  (System/exit 0))
+  ;; (System/exit 0) ;; TODO this crashes the repl
+  )
 
 (defn command-verbose
   "Enable verbose mode"
