@@ -2,18 +2,19 @@
   (:require [clojure.string :as str])
   (:gen-class :main true))
 
+(def verbose (atom false))
+
 (defn command-help
   "Display the help screen"
   []
   (println "Usage: tnmin [--help] <command> [<args>]")
-  ;; (System/exit 0) ;; TODO this crashes the repl
-  )
+  ;; TODO this crashes the repl and also isn't represented in tests for same reason
+  (System/exit 0))
 
 (defn command-verbose
   "Enable verbose mode"
   []
-  ;TODO
-  )
+  (reset! verbose true))
 
 (def commands [{:name "--help" :function command-help}
                {:name "--verbose" :function command-verbose}])
@@ -75,7 +76,7 @@
 (defn strip-separators
   "Remove word separators, turns string into a vector"
   [input]
-  (str/split input #"[_]"))
+  (str/split input #"[_|\s]"))
 
 (defn reform-table-name
   "Reform table name"
@@ -87,18 +88,20 @@
   ([input]
    (minify-input input default-max-length)) ;; TODO this is multi arity example
   ([input max-length]
+   (when @verbose (println "... abreviating special words"))
    (let [first-pass (minify-special-words input)
          first-pass-count (->> first-pass reform-table-name count)]
      (if (> first-pass-count max-length)
        ;; If it is too long lets remove some vowels
-       (->> first-pass
-            (map (fn [word]
-                   ;; account for not removing any vowels for already abbreviated words
-                   ;; TODO might want to add some sort of test for this case (there isn't an abbreviation with a vowel right now)
-                   (let [abbrevs (->> abbreviations (map :abbreviation))]
-                     (if (some? (->> abbrevs (some #(= word %))))
-                       word
-                       (remove-vowels word))))))
+       (do (when @verbose (println "... string still too long removing vowels"))
+           (->> first-pass
+                (map (fn [word]
+                       ;; account for not removing any vowels for already abbreviated words
+                       ;; TODO might want to add some sort of test for this case (there isn't an abbreviation with a vowel right now)
+                       (let [abbrevs (->> abbreviations (map :abbreviation))]
+                         (if (some? (->> abbrevs (some #(= word %))))
+                           word
+                           (remove-vowels word)))))))
        ;; Otherwise it is good and pass it along
        first-pass))))
 

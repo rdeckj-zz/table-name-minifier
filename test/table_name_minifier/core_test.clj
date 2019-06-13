@@ -8,7 +8,9 @@
       (is (= (handle-commands input) input))))
 
   (testing "collection with commands present returns collection without commands"
-    (is (= (handle-commands ["some", "--verbose", "name"]) ["some", "name"]))))
+    (is (= (let [result (handle-commands ["some", "--verbose", "name"])]
+             (reset! verbose false) ;; So we don't pollute the rest of the tests
+             result) ["some", "name"]))))
 
 (deftest minify-special-words-tests
   (testing "percent returns pct"
@@ -69,7 +71,10 @@
     (is (= (strip-separators "one") ["one"])))
 
   (testing "underscore seperator"
-    (is (= (strip-separators "one_two") ["one", "two"]))))
+    (is (= (strip-separators "one_two") ["one", "two"])))
+
+  (testing "space seperator"
+    (is (= (strip-separators "one two") ["one", "two"]))))
 
 (deftest reform-table-name-tests
   (testing "reforms single word"
@@ -81,4 +86,10 @@
 (deftest -main-tests
   (testing "main prints correct value"
     (is (= (with-out-str (-main "really_long_table_name_over_32_characters_and_it_sucks "))
-           "rlly_lng_tbl_nm_vr_32_chrctrs_nd_t_scks \n"))))
+           "rlly_lng_tbl_nm_vr_32_chrctrs_nd_t_scks\n")))
+
+  (testing "verbose command prints extra stuff out"
+    (is (= (let [result (with-out-str (-main "--verbose really_long_table_name_over_32_characters_and_it_sucks "))]
+             (reset! verbose false)
+             result)
+           "... abreviating special words\n... string still too long removing vowels\nrlly_lng_tbl_nm_vr_32_chrctrs_nd_t_scks\n"))))
