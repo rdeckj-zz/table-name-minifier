@@ -123,4 +123,9 @@
 (defn -main
   "Take user input and process"
   [input]
-  (println (reform-table-name (minify-input (handle-commands (strip-separators input)) default-max-length))))
+  (-> input
+      strip-separators
+      handle-commands
+      (minify-input default-max-length)
+      reform-table-name
+      println))
