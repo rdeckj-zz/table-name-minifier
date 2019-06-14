@@ -25,12 +25,6 @@
 
 (def default-max-length 32)
 
-(defn get-command-fn
-  "Search command list for valid command flags"
-  [optional-args]
-  (when-not (empty? optional-args)
-    (:function (first (filter #(= optional-args (:name %)) commands)))))
-
 (defn remove-vowels
   "Remove vowels from the string"
   [input]
@@ -47,13 +41,6 @@
                              (:abbreviation abbreviation-map))))
                    ;; if there wasn't one then % will be null and it will use the original word instead
                    (#(if (some? %) % word)))))))
-
-(defn append-command
-  ""
-  [bool not-commands current]
-  (if-not bool
-    (conj not-commands current)
-    not-commands))
 
 (defn handle-commands
   "Handle special commands"
