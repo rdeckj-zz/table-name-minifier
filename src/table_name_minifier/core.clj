@@ -72,7 +72,7 @@
 (defn minify-input
   "Condense the input collection into a reduced collection"
   ([input]
-   (minify-input input default-max-length)) ;; TODO this is multi arity example
+   (minify-input input default-max-length))
   ([input max-length]
    (when @verbose (println "... abbreviating special words"))
    (let [first-pass (minify-special-words input)
@@ -83,7 +83,7 @@
            (->> first-pass
                 (map (fn [word]
                        ;; account for not removing any vowels for already abbreviated words
-                       ;; TODO might want to add some sort of test for this case (there isn't an abbreviation with a vowel right now)
+                       ;; TODO add test when an abbreviation is added that contains a vowel
                        (let [abbrevs (->> abbreviations (map :abbreviation))]
                          (if (some? (->> abbrevs (some #(= word %))))
                            word
@@ -98,6 +98,5 @@
    (->> input
         strip-separators
         handle-commands
-        minify-input ;; TODO added multi arity to keep this thread clean and backwards compatible (for tests)
-                     ;; Otherwise it would be (#(minify-input % default-max-length))
+        minify-input
         reform-table-name)))

@@ -7,7 +7,6 @@
   (test-fn)
   (reset! verbose false))
 
-;; https://clojuredocs.org/clojure.test/use-fixtures
 (use-fixtures :each verbose-mode-fixture)
 
 (deftest handle-commands-tests
@@ -87,7 +86,7 @@
     (is (= (reform-table-name ["potato"]) "potato")))
 
   (testing "reforms multiple words"
-    (is (= (reform-table-name ["one", "two", "three"]), "one_two_three")))) ;; TODO don't need ","
+    (is (= (reform-table-name ["one", "two", "three"]), "one_two_three"))))
 
 (deftest -main-tests
   (testing "main prints correct value"
