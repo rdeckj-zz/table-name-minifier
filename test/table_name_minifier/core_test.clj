@@ -2,15 +2,21 @@
   (:require [clojure.test :refer :all]
             [table-name-minifier.core :refer :all]))
 
+(defn verbose-mode-fixture [test-fn]
+  (reset! verbose false)
+  (test-fn)
+  (reset! verbose false))
+
+;; https://clojuredocs.org/clojure.test/use-fixtures
+(use-fixtures :each verbose-mode-fixture)
+
 (deftest handle-commands-tests
   (testing "collection without commands present returns the same collection"
     (let [input ["some", "table", "name"]]
       (is (= (handle-commands input) input))))
 
   (testing "collection with commands present returns collection without commands"
-    (is (= (let [result (handle-commands ["some", "--verbose", "name"])]
-             (reset! verbose false) ;; So we don't pollute the rest of the tests
-             result) ["some", "name"]))))
+    (is (= (handle-commands ["some", "--verbose", "name"]) ["some", "name"]))))
 
 (deftest minify-special-words-tests
   (testing "percent returns pct"
@@ -89,7 +95,5 @@
            "rlly_lng_tbl_nm_vr_32_chrctrs_nd_t_scks\n")))
 
   (testing "verbose command prints extra stuff out"
-    (is (= (let [result (with-out-str (-main "--verbose really_long_table_name_over_32_characters_and_it_sucks "))]
-             (reset! verbose false)
-             result)
-           "... abreviating special words\n... string still too long removing vowels\nrlly_lng_tbl_nm_vr_32_chrctrs_nd_t_scks\n"))))
+    (is (= (with-out-str (-main "--verbose really_long_table_name_over_32_characters_and_it_sucks "))
+           "... abbreviating special words\n... string still too long removing vowels\nrlly_lng_tbl_nm_vr_32_chrctrs_nd_t_scks\n"))))

@@ -58,20 +58,19 @@
 (defn handle-commands
   "Handle special commands"
   [input]
-  (loop [initial (first input)
-         remaining (rest input)
-         not-command `()]
-
-    (let [command-fn (get-command-fn initial)]
-      (if command-fn
-        (command-fn))
-
-      (if-not (empty? remaining)
-        (recur
-         (first remaining)
-         (rest remaining)
-         (append-command command-fn not-command initial))
-        (reverse (append-command command-fn not-command initial))))))
+  (doall ;; This makes sure that the side effects of commands (verbose atom setting) happen in order despite a lazy seq
+   (->> input
+        (map (fn [word]
+               ;; find any commands
+               (let [command (->> commands (some #(if (= (:name %) word) % nil)))]
+                 (if (some? command)
+                   ;; run them if they are there and replace that spot in the input vec with  nil
+                   (do
+                     ((:function command))
+                     nil)
+                   word))))
+        ;; remove those substituted nils
+        (remove nil?))))
 
 (defn strip-separators
   "Remove word separators, turns string into a vector"
@@ -88,7 +87,7 @@
   ([input]
    (minify-input input default-max-length)) ;; TODO this is multi arity example
   ([input max-length]
-   (when @verbose (println "... abreviating special words"))
+   (when @verbose (println "... abbreviating special words"))
    (let [first-pass (minify-special-words input)
          first-pass-count (->> first-pass reform-table-name count)]
      (if (> first-pass-count max-length)
