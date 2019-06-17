@@ -51,7 +51,7 @@
   [input]
   (condp str/includes? input
     ;; run each command by matching on label
-    (get-in commands [:help :label]) ((get-in commands [:help :function]))
+    (get-in commands [:verbose :label]) ((get-in commands [:help :function]))
     (get-in commands [:help :label]) ((get-in commands [:help :function])) ;; TODO pass input
     ;; process input
     (-> input
