@@ -37,10 +37,26 @@
     #(> (count %) max-length) remove-vowels
     :always                   println))
 
+(def commands {:help    {:label    "--help"
+                         :pattern   "(--help)"
+                         :function command-help}
+               :verbose {:label    "--verbose"
+                         :pattern  "(--verbose)"
+                         :function command-verbose}})
+
+(def command-labels (->> commands (map (fn [[_ command]] (:pattern command)))))
+
 (defn -main
   "Take user input and process"
   [input]
   (condp str/includes? input
-     "--help" (command-help)
-     "--verbose" (command-verbose) ;;TODO pass input
-     (shorten-table input)))
+    ;; run each command by matching on label
+    (get-in commands [:verbose :label]) ((get-in commands [:help :function]))
+    (get-in commands [:help :label]) ((get-in commands [:help :function])) ;; TODO pass input
+    ;; process input
+    (-> input
+        ;; remove the commands from the input
+        (str/replace (re-pattern (str/join "|" command-labels)) "")
+        ;; remove white spaces before processing
+        (str/replace #"[\s]" "")
+        shorten-table)))
