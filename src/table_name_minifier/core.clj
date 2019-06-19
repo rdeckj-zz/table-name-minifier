@@ -37,9 +37,12 @@
 
 (defn shorten-table
   [input]
-  (cond-> (replace-abbr input)
-    #(> (count %) max-length) remove-vowels
-    :always                   println))
+  (let [abbreviated-input (replace-abbr input)]
+    (if (> (count abbreviated-input)
+           max-length)
+      (remove-vowels abbreviated-input)
+      abbreviated-input
+      )))
 
 (def commands {:help    {:label    "--help"
                          :pattern   "(--help)"
@@ -63,4 +66,5 @@
         (str/replace (re-pattern (str/join "|" command-labels)) "")
         ; remove white spaces before processing
         (str/replace #"[\s]" "")
-        shorten-table)))
+        shorten-table
+        println)))
