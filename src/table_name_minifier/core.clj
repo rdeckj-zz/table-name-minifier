@@ -10,7 +10,7 @@
 
 (defn command-verbose
   "Enable verbose mode"
-  ;;TODO
+  ;TODO
   [])
 
 (def max-length 32)
@@ -18,7 +18,11 @@
 (def abbreviations
   {#"percent" "pct"
    #"state" "st"
-   #"pound" "lb"})
+   #"pound" "lb"
+   #"miscellaneous" "misc"
+   #"number" "num"
+   #"temperature" "temp"
+   #"department" "dept"})
 
 (defn replace-abbr
   [table-name]
@@ -50,13 +54,13 @@
   "Take user input and process"
   [input]
   (condp str/includes? input
-    ;; run each command by matching on label
+    ; run each command by matching on label
     (get-in commands [:verbose :label]) ((get-in commands [:help :function]))
     (get-in commands [:help :label]) ((get-in commands [:help :function])) ;; TODO pass input
-    ;; process input
+    ; process input
     (-> input
-        ;; remove the commands from the input
+        ; remove the commands from the input
         (str/replace (re-pattern (str/join "|" command-labels)) "")
-        ;; remove white spaces before processing
+        ; remove white spaces before processing
         (str/replace #"[\s]" "")
         shorten-table)))
