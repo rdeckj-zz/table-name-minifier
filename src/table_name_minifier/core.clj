@@ -18,7 +18,11 @@
 (def abbreviations
   {#"percent" "pct"
    #"state" "st"
-   #"pound" "lb"})
+   #"pound" "lb"
+   #"miscellaneous" "misc"
+   #"number" "num"
+   #"temperature" "temp"
+   #"department" "dept"})
 
 (defn replace-abbr
   [table-name]
