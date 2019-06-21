@@ -2,18 +2,18 @@
   (:require [clojure.string :as str])
   (:gen-class :main true))
 
+(def max-length 32)
+
 (defn command-help
   "Display the help screen"
   []
-  (println "Usage: tnmin [--help] <command> [<args>]")
-  (System/exit 0))
+  (println "Usage: tnmin [--help] <command> [<args>]"))
 
-(defn command-verbose
-  "Enable verbose mode"
-  ;TODO
-  [])
-
-(def max-length 32)
+(defn command-max
+  "User specified max length"
+  [input]
+  (println "fuck")
+  )
 
 (def abbreviations
   {#"percent" "pct"
@@ -47,9 +47,9 @@
 (def commands {:help    {:label    "--help"
                          :pattern   "(--help)"
                          :function command-help}
-               :verbose {:label    "--verbose"
-                         :pattern  "(--verbose)"
-                         :function command-verbose}})
+               :max {:label    "--max"
+                         :pattern  "(--max)"
+                         :function command-max}})
 
 (def command-labels (->> commands (map (fn [[_ command]] (:pattern command)))))
 
@@ -58,8 +58,8 @@
   [input]
   (condp str/includes? input
     ; run each command by matching on label
-    (get-in commands [:verbose :label]) ((get-in commands [:help :function]))
-    (get-in commands [:help :label]) ((get-in commands [:help :function])) ;; TODO pass input
+    (get-in commands [:max :label]) :>> (get-in commands [:max :function])
+    (get-in commands [:help :label]) :>> (get-in commands [:help :function])
     ; process input
     (-> input
         ; remove the commands from the input
