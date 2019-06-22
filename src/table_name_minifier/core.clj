@@ -4,25 +4,36 @@
 
 (def max-length 32)
 
+(defn remove-command
+  "Remove the specified command and it's parameters from the string"
+  [input command params]
+  (let [regex (if params
+                (str command " [0-9]+ ")
+                command)]
+    (str/replace input (re-pattern regex) "")))
+
 (defn command-help
   "Display the help screen"
-  []
-  (println "Usage: tnmin [--help] <command> [<args>]"))
+  [input]
+  (println "Usage: tnmin [--help] <command> [<args>]")
+  ; short-circuit program by passing back empty string
+  "")
 
 (defn command-max
   "User specified max length"
   [input]
-  (println "fuck")
+  ;(def max-length 5)
+  (remove-command input "--max" true)
   )
 
 (def abbreviations
-  {#"percent" "pct"
-   #"state" "st"
-   #"pound" "lb"
+  {#"percent"       "pct"
+   #"state"         "st"
+   #"pound"         "lb"
    #"miscellaneous" "misc"
-   #"number" "num"
-   #"temperature" "temp"
-   #"department" "dept"})
+   #"number"        "num"
+   #"temperature"   "temp"
+   #"department"    "dept"})
 
 (defn replace-abbr
   [table-name]
@@ -44,27 +55,14 @@
       abbreviated-input
       )))
 
-(def commands {:help    {:label    "--help"
-                         :pattern   "(--help)"
-                         :function command-help}
-               :max {:label    "--max"
-                         :pattern  "(--max)"
-                         :function command-max}})
-
-(def command-labels (->> commands (map (fn [[_ command]] (:pattern command)))))
-
 (defn -main
   "Take user input and process"
   [input]
-  (condp str/includes? input
-    ; run each command by matching on label
-    (get-in commands [:max :label]) :>> (get-in commands [:max :function])
-    (get-in commands [:help :label]) :>> (get-in commands [:help :function])
-    ; process input
-    (-> input
-        ; remove the commands from the input
-        (str/replace (re-pattern (str/join "|" command-labels)) "")
-        ; remove white spaces before processing
-        (str/replace #"[\s]" "")
-        shorten-table
-        println)))
+  (cond-> input
+          ; run each command by matching on label
+          (str/includes? input "--max") command-max
+          (str/includes? input "--help") command-help
+          ; remove white spaces before processing
+          true (str/replace #"[\s]" "")
+          true shorten-table
+          true println))
