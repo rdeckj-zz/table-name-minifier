@@ -12,6 +12,13 @@
                 command)]
     (str/replace input (re-pattern regex) "")))
 
+(defn get-parameter
+  "Get the parameter value for the specified command"
+  [input command]
+  (let [split-input (str/split input #" ")]
+    (get split-input (+ (.indexOf split-input command) 1))
+    ))
+
 (defn command-help
   "Display the help screen"
   [input]
@@ -22,7 +29,7 @@
 (defn command-max
   "User specified max length"
   [input]
-  ;(def max-length 5)
+  ;(def max-length (get-parameter input "--max"))
   (remove-command input "--max" true)
   )
 
