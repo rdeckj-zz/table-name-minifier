@@ -20,6 +20,15 @@ $ tnmin pound_is_special                                   # lb_is_special
 $ tnmin --max 10 pound_is_special                          # lb_s_spcl
 ```
 
+## Commands
+
+### ```--max <number>```
+
+Set the maximum length of the table name. Input over this length will be minified. Words that can be substituted for abbreviations are still replaced even if the input is under the specified length.
+
+### --help
+Print the help screen.
+
 ## License
 
 Copyright © 2019 Joshua Radecki
