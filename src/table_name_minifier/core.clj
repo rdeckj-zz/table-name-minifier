@@ -29,7 +29,7 @@
 (defn command-max
   "User specified max length"
   [input]
-  ;(def max-length (get-parameter input "--max"))
+  (def max-length (Integer. (get-parameter input "--max")))
   (remove-command input "--max" true)
   )
 
