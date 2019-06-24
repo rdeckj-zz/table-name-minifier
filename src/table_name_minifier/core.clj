@@ -1,5 +1,7 @@
 (ns table-name-minifier.core
-  (:require [clojure.string :as str])
+  (:require [clojure.string :as str]
+            [clojure.data.csv :as csv]
+            [clojure.java.io :as io])
   (:gen-class :main true))
 
 (def max-length 32)
@@ -19,7 +21,13 @@
     (get split-input (+ (.indexOf split-input command) 1))
     ))
 
-(defn command-help
+(defn test2
+  []
+  (with-open [reader (io/reader ".abbreviations.csv")]
+    (doall
+      (csv/read-csv reader))))
+
+  (defn command-help
   "Display the help screen"
   [input]
   (println "Usage: tnmin [arguments]")
