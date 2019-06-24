@@ -22,7 +22,11 @@
 (defn command-help
   "Display the help screen"
   [input]
-  (println "Usage: tnmin [--help] <command> [<args>]")
+  (println "Usage: tnmin [arguments]")
+  (println "Valid arguments are:")
+  (println "")
+  (println "--help                   Print help and exit")
+  (println "--max <number>           Set the max table length")
   ; short-circuit program by passing back empty string
   "")
 
