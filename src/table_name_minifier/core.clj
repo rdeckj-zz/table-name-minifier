@@ -38,13 +38,29 @@
   )
 
 (def abbreviations
-  {#"percent"       "pct"
-   #"state"         "st"
-   #"pound"         "lb"
-   #"miscellaneous" "misc"
-   #"number"        "num"
-   #"temperature"   "temp"
-   #"department"    "dept"})
+  {#"percent"        "pct"
+   #"state"          "st"
+   #"pound"          "lb"
+   #"miscellaneous"  "misc"
+   #"number"         "num"
+   #"temperature"    "temp"
+   #"department"     "dept"
+   #"administrative" "admin"
+   #"machinery"      "mach"
+   #"medical"        "med"
+   #"medicine"       "med"
+   #"veteran"        "vet"
+   #"january"        "jan"
+   #"february"       "feb"
+   #"march"          "mar"
+   #"april"          "apr"
+   #"june"           "jun"
+   #"july"           "jul"
+   #"august"         "aug"
+   #"september"      "sep"
+   #"october"        "oct"
+   #"november"       "nov"
+   #"december"       "dec"})
 
 (defn replace-abbr
   [table-name]
