@@ -15,10 +15,10 @@ A quick TLDR:
 ```
 $ tnmin long_table_name_that_should_become_minified        # lng_tbl_nm_tht_shld_bcm_mnfd
 $ tnmin short_table_name                                   # short_table_name
-$ tnmin pound_is_special                                   # lb_is_special
 $ tnmin pound_remains_special_in_long_names                # lb_rmns_spcl_n_lng_nms
+$ tnmin pound_is_special                                   # lb_is_special
+$ tnmin --max 10 pound_is_special                          # lb_s_spcl
 ```
-
 
 ## License
 
