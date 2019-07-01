@@ -28,10 +28,6 @@
     (is (= (replace-abbr "no_abbreviations") "no_abbreviations"))))
 
 (deftest command-help-tests
-  (testing "prints help text"
-    (is (= (clojure.string/trim-newline (with-out-str (command-help "--help")))
-           "Usage: tnmin [--help] <command> [<args>]")))
-
   (testing "returns empty string"
     (is (= (command-help "--help some_input_text") ""))))
 

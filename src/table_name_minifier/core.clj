@@ -21,13 +21,13 @@
     (get split-input (+ (.indexOf split-input command) 1))
     ))
 
-(defn test2
+(defn read-abbreviations
   []
   (with-open [reader (io/reader ".abbreviations.csv")]
     (doall
       (csv/read-csv reader))))
 
-  (defn command-help
+(defn command-help
   "Display the help screen"
   [input]
   (println "Usage: tnmin [arguments]")
@@ -45,36 +45,11 @@
   (remove-command input "--max" true)
   )
 
-(def abbreviations
-  {#"percent"        "pct"
-   #"state"          "st"
-   #"pound"          "lb"
-   #"miscellaneous"  "misc"
-   #"number"         "num"
-   #"temperature"    "temp"
-   #"department"     "dept"
-   #"administrative" "admin"
-   #"machinery"      "mach"
-   #"medical"        "med"
-   #"medicine"       "med"
-   #"veteran"        "vet"
-   #"january"        "jan"
-   #"february"       "feb"
-   #"march"          "mar"
-   #"april"          "apr"
-   #"june"           "jun"
-   #"july"           "jul"
-   #"august"         "aug"
-   #"september"      "sep"
-   #"october"        "oct"
-   #"november"       "nov"
-   #"december"       "dec"})
-
 (defn replace-abbr
   [table-name]
   (reduce (fn [s [regex abbr]] (str/replace s regex abbr))
           table-name
-          abbreviations))
+          (read-abbreviations)))
 
 (defn remove-vowels
   "Remove vowels from the string"
