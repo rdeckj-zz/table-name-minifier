@@ -67,12 +67,13 @@
 
 (defn -main
   "Take user input and process"
-  [input]
-  (cond-> input
-          ; run each command by matching on label
-          (str/includes? input "--max") command-max
-          (str/includes? input "--help") command-help
-          ; remove white spaces before processing
-          true (str/replace #"[\s]" "")
-          true shorten-table
-          true println))
+  ([] (command-help ""))
+  ([input]
+   (cond-> input
+           ; run each command by matching on label
+           (str/includes? input "--max") command-max
+           (str/includes? input "--help") command-help
+           ; remove white spaces before processing
+           true (str/replace #"[\s]" "")
+           true shorten-table
+           true println)))
