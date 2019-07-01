@@ -1,5 +1,7 @@
 (ns table-name-minifier.core
-  (:require [clojure.string :as str])
+  (:require [clojure.string :as str]
+            [clojure.data.csv :as csv]
+            [clojure.java.io :as io])
   (:gen-class :main true))
 
 (def max-length 32)
@@ -19,10 +21,20 @@
     (get split-input (+ (.indexOf split-input command) 1))
     ))
 
+(defn read-abbreviations
+  []
+  (with-open [reader (io/reader ".abbreviations.csv")]
+    (doall
+      (csv/read-csv reader))))
+
 (defn command-help
   "Display the help screen"
   [input]
-  (println "Usage: tnmin [--help] <command> [<args>]")
+  (println "Usage: tnmin [arguments]")
+  (println "Valid arguments are:")
+  (println "")
+  (println "--help                   Print help and exit")
+  (println "--max <number>           Set the max table length")
   ; short-circuit program by passing back empty string
   "")
 
@@ -33,20 +45,11 @@
   (remove-command input "--max" true)
   )
 
-(def abbreviations
-  {#"percent"       "pct"
-   #"state"         "st"
-   #"pound"         "lb"
-   #"miscellaneous" "misc"
-   #"number"        "num"
-   #"temperature"   "temp"
-   #"department"    "dept"})
-
 (defn replace-abbr
   [table-name]
   (reduce (fn [s [regex abbr]] (str/replace s regex abbr))
           table-name
-          abbreviations))
+          (read-abbreviations)))
 
 (defn remove-vowels
   "Remove vowels from the string"
