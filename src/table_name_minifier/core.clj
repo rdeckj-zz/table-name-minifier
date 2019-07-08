@@ -21,11 +21,16 @@
     (get split-input (+ (.indexOf split-input command) 1))
     ))
 
-(defn read-abbreviations
+(defn read-abbreviations-file
   []
   (with-open [reader (io/reader ".abbreviations.csv")]
     (doall
       (csv/read-csv reader))))
+
+(defn strip-abbreviations-comments
+  "Remove lines that start with #"
+  []
+  (remove #(= \# (get (get % 0) 0)) (read-abbreviations-file)))
 
 (defn command-help
   "Display the help screen"
@@ -49,7 +54,7 @@
   [table-name]
   (reduce (fn [s [regex abbr]] (str/replace s regex abbr))
           table-name
-          (read-abbreviations)))
+          (strip-abbreviations-comments)))
 
 (defn remove-vowels
   "Remove vowels from the string"
