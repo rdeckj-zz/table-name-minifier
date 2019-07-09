@@ -1,3 +1,8 @@
 #!/bin/bash
 
-java -jar tnmin.jar $@
+str=
+for i in "$@"; do
+  str="$str $i"
+done
+
+java -jar tnmin.jar "$str"
