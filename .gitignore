@@ -33,6 +33,7 @@ pom.xml.asc
 .idea/**/shelf
 
 # Generated files
+.idea/**/misc.xml
 .idea/**/contentModel.xml
 
 # Sensitive or high-churn files

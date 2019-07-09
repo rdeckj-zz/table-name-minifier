@@ -35,9 +35,16 @@
   (testing "removes command and parameter"
     (is (= (command-max "--max 30 table_name") "table_name"))))
 
+(deftest command-noabbr-tests
+  (testing "removes command"
+    (is (= (command-noabbr "--noabbr pound_table") "pound_table"))))
+
 (deftest remove-command-tests
-  (testing "command without parameters"
+  (testing "command without parameters without table name"
     (is (= (remove-command "--help" "--help" false) "")))
+
+  (testing "command without parameters and table name"
+    (is (= (remove-command "--noabbr something" "--noabbr" false) "something")))
 
   (testing "command with parameters"
     (is (= (remove-command "--max 20 something" "--max" true) "something"))))
@@ -56,4 +63,8 @@
 
   (testing "--max <num> modifies max length"
     (is (= (clojure.string/trim-newline (with-out-str (-main "--max 5 over_five")))
-           "vr_fv"))))
+           "vr_fv")))
+
+  (testing "--noabbr doesn't use abbreviations table"
+    (is (= (clojure.string/trim-newline (with-out-str (-main "--noabbr --max 5 pound_table")))
+           "pnd_tbl"))))

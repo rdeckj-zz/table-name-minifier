@@ -5,13 +5,14 @@
   (:gen-class :main true))
 
 (def max-length 32)
+(def use-abbreviations true)
 
 (defn remove-command
   "Remove the specified command and it's parameters from the string"
   [input command params]
   (let [regex (if params
                 (str command " [0-9]+ ")
-                command)]
+                (str command " ?"))]
     (str/replace input (re-pattern regex) "")))
 
 (defn get-parameter
@@ -40,6 +41,7 @@
   (println "")
   (println "--help                   Print help and exit")
   (println "--max <number>           Set the max table length")
+  (println "--noabbr                 Treat words in .abbreviations like normal words")
   ; short-circuit program by passing back empty string
   "")
 
@@ -48,6 +50,13 @@
   [input]
   (def max-length (Integer. (get-parameter input "--max")))
   (remove-command input "--max" true)
+  )
+
+(defn command-noabbr
+  "Ignore abbreviation words"
+  [input]
+  (def use-abbreviations false)
+  (remove-command input "--noabbr" false)
   )
 
 (defn replace-abbr
@@ -63,7 +72,10 @@
 
 (defn shorten-table
   [input]
-  (let [abbreviated-input (replace-abbr input)]
+  (let [abbreviated-input
+        (if use-abbreviations
+          (replace-abbr input)
+          input)]
     (if (> (count abbreviated-input)
            max-length)
       (remove-vowels abbreviated-input)
@@ -78,6 +90,7 @@
            ; run each command by matching on label
            (str/includes? input "--max") command-max
            (str/includes? input "--help") command-help
+           (str/includes? input "--noabbr") command-noabbr
            ; remove white spaces before processing
            true (str/replace #"[\s]" "")
            true shorten-table
