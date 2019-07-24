@@ -29,7 +29,7 @@ Ignore the `.abbreviations` file when minifying the table name. Words that would
 ### ```--max <number>```
 Set the maximum length of the table name. Input over this length will be minified. Words that can be substituted for abbreviations are still replaced even if the input is under the specified length.
 
-### --help
+### ```--help```
 Print the help screen.
 
 ## Configuration
