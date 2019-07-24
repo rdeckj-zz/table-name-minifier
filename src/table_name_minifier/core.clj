@@ -23,15 +23,18 @@
     ))
 
 (defn read-abbreviations-file
-  []
-  (with-open [reader (io/reader ".abbreviations.csv")]
-    (doall
-      (csv/read-csv reader))))
+  [file-name]
+  (if (.exists (io/as-file file-name))
+    (with-open [reader (io/reader file-name)]
+      (doall
+        (csv/read-csv reader)))
+    ""
+    ))
 
 (defn strip-abbreviations-comments
   "Remove lines that start with #"
   []
-  (remove #(= \# (get (get % 0) 0)) (read-abbreviations-file)))
+  (remove #(= \# (get (get % 0) 0)) (read-abbreviations-file ".abbreviations.csv")))
 
 (defn command-help
   "Display the help screen"
