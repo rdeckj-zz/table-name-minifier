@@ -34,7 +34,7 @@
 (defn strip-abbreviations-comments
   "Remove lines that start with #"
   []
-  (remove #(= \# (get (get % 0) 0)) (read-abbreviations-file ".abbreviations.csv")))
+  (remove #(= \# (get (get % 0) 0)) (read-abbreviations-file ".abbreviations")))
 
 (defn command-help
   "Display the help screen"
