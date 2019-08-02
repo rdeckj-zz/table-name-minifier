@@ -1,6 +1,6 @@
 # table-name-minifier
 
-A Clojure library designed to shorten SQL table names.
+A Clojure application designed to shorten SQL table names.
 
 ## Installation
 
